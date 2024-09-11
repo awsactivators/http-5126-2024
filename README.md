@@ -1,84 +1,18 @@
-# http-5126-2024
-Database Design Development
+# http-5126-2024 - Database Design Development
 
-## Course Outline
+This course provides strategies and techniques for designing, creating and interacting with a database. SQL and MySQL languages are the primary focus, with an introduction to NoSQL options.
 
-## Module 1: Introduction to Data Design
-**Topics:**
-- Introduction to the course
-- Introduction to data and database core concepts
 
-## Module 2: Accessing Data Part 1
-**Topics:**
-- Retrieving data from a database table with SQL queries
-- Limiting columns
-- Limiting rows with the WHERE clause and comparison operators
-- Creating Aliases for columns
+> **Note:** Designing and interacting with sources of data are required skills for back-end and full-stack developers.
 
-## Module 3: Accessing Data Part 2
-**Topics:**
-- Removing duplicate rows with DISTINCT
-- Refining results with logical operators
-- Refining results with LIKE, BETWEEN, IN, and IS NULL
-- Sorting the result set with ORDER BY
+Here is a link to [Database Introduction part 1](https://medium.com/omarelgabrys-blog/database-introduction-part-1-4844fada1fb0)
 
-## Module 4: Using Built-in Functions
-**Topics:**
-- Aggregate functions: MAX, MIN, COUNT, AVG, SUM, GROUP BY, HAVING
+![Database development process](https://res.cloudinary.com/dqtokk1cn/image/upload/v1726020384/What-is-needed-at-all-stages-of-the-process-of-developing-a-database-system_eru735.jpg)
 
-## Module 5: Join Operations to Combine Tables
-**Topics:**
-- Retrieving data from multiple tables
+![Database types](https://res.cloudinary.com/dqtokk1cn/image/upload/v1726020384/unnamed_fmczmc.jpg)
 
-## Module 6: Database Design Part 1
-**Topics:**
-- Database design fundamentals
-- Identifying tables & assigning columns
-- Relationships between tables
-- Primary keys and foreign keys
-- Data types in MySQL
+Here is a sample sql code that selects all records from students table.
 
-## Module 7: Database Design Part 2
-**Topics:**
-- CRUD functionality
+```sql
+SELECT * FROM Students;
 
-## Module 8: Database Design Part 3
-**Topics:**
-- General principles of database design
-- Relationship types
-- Constraints
-- Normalization
-- Optimizing with indices
-
-## Module 9: Views & Triggers
-**Topics:**
-- Views
-- Triggers
-
-## Module 10: Custom Functions
-**Topics:**
-- Creating custom functions
-- Implementing conditions & loops
-
-## Module 11: Stored Procedures
-**Topics:**
-- Creating and using stored procedures
-- Parameters for procedures
-- Cursors
-
-## Module 12: User Management
-**Topics:**
-- Providing access to your data
-- Passwords in MySQL
-- Permissions & privileges
-
-## Module 13: Data Management with NoSQL
-**Topics:**
-- Introduction to NoSQL options
-- Setup and installation
-- Basic CRUD functionality
-
-## Final Project Presentations
-**Activities:**
-- Database Project Presentation (5%)
-- Database Project (15%)
