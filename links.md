@@ -2,3 +2,25 @@
 
 ### Database — Introduction (Part 1)
 https://medium.com/omarelgabrys-blog/database-introduction-part-1-4844fada1fb0
+
+### sql bolt exercise
+https://sqlbolt.com/lesson/select_queries_introduction
+
+### Database fundamentals (Part 2)
+https://medium.com/omarelgabrys-blog/database-fundamentals-part-2-b841032243ac
+
+### phpMyAdmin vs MYSQL
+https://tableplus.com/blog/2018/10/phpmyadmin-vs-mysql.html#:~:text=What%20is%20the%20difference%20between,used%20for%20managing%20MySQL%20database.
+
+### W3Schools SQL
+Intro, Syntax, SELECT, DISTINCT, WHERE - https://www.w3schools.com/sql/sql_intro.asp
+
+### W3Schools SQL Keywords
+AS (column alias) - https://www.w3schools.com/sql/sql_ref_as.asp
+
+### W3Schools MySQL Functions
+CONCAT Function (MySQL)
+	*CONCAT_WS Function, similar but different - https://www.w3schools.com/sql/func_mysql_concat.asp
+
+### Practice - SQL BOLT
+SQL Lesson 1: SELECT queries 101 - https://sqlbolt.com/lesson/select_queries_introduction
