@@ -24,3 +24,9 @@ CONCAT Function (MySQL)
 
 ### Practice - SQL BOLT
 SQL Lesson 1: SELECT queries 101 - https://sqlbolt.com/lesson/select_queries_introduction
+
+
+# Week 3
+
+SQL Lesson 2: Queries with constraints (Pt. 1)
+https://sqlbolt.com/lesson/select_queries_with_constraints
