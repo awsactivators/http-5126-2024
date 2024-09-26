@@ -30,3 +30,9 @@ SQL Lesson 1: SELECT queries 101 - https://sqlbolt.com/lesson/select_queries_int
 
 SQL Lesson 2: Queries with constraints (Pt. 1)
 https://sqlbolt.com/lesson/select_queries_with_constraints
+
+Week 4
+
+SQL Lesson 10: Queries with aggregates (Pt. 1)
+
+https://sqlbolt.com/lesson/select_queries_with_aggregates
