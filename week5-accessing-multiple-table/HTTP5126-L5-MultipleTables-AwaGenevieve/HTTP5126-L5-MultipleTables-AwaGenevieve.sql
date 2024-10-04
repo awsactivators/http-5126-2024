@@ -34,31 +34,25 @@ GROUP BY sales.employee
 ORDER BY sales.item DESC;
 
 --  4
--- A
-SELECT sales.date, stock_items.item, stock_items.price, stock_items.category, employees.first_name, employees.role 
-FROM sales 
-INNER JOIN employees ON sales.employee = employees.id 
-INNER JOIN stock_items ON sales.employee = stock_items.id 
-WHERE employees.role = "sales" 
-GROUP BY sales.employee 
-HAVING MAX(sales.item);
-
+-- A I couldn't figure this out then I had to google it and I came about the subqueries, is there a simpler way to
+-- achieve question 4A? The link of my research "https://stackoverflow.com/questions/49990666/trying-to-create-multiple-temporary-tables-in-a-single-query"
 WITH top_salesperson AS (
-    SELECT s.employee
-    FROM sales s
-    JOIN employees e ON s.employee = e.id
-    GROUP BY s.employee
-    ORDER BY COUNT(*) DESC
-    LIMIT 1
+  SELECT s.employee
+  FROM sales s
+  INNER JOIN employees e ON s.employee = e.id
+  GROUP BY s.employee
+  ORDER BY COUNT(s.item) DESC
+  LIMIT 1
 )
+
 SELECT s.date, si.item, si.price, si.category, e.first_name
 FROM sales s
-JOIN stock_items si ON s.item = si.item
-JOIN employees e ON s.employee = e.id
+INNER JOIN stock_items si ON s.item = si.id
+INNER JOIN employees e ON s.employee = e.id
 WHERE s.employee = (SELECT employee FROM top_salesperson);
 
 -- B
-SELECT si.id, si.item, si.price, si.category, COUNT(s.item) AS times_sold
+SELECT si.id, si.item, si.price, si.category, COUNT(s.item) AS "times_sold"
 FROM stock_items si
 LEFT JOIN sales s ON si.item = s.item
 GROUP BY si.id, si.item, si.price, si.category
@@ -69,10 +63,10 @@ ORDER BY si.id;
 -- A Which employees have sold items with prices above 100 and how many sales have they made?
 
 -- B
-SELECT e.first_name, e.last_name, COUNT(*) AS sales_count
+SELECT e.first_name, e.last_name, COUNT(*) AS "sales_count"
 FROM sales s
-JOIN employees e ON s.employee = e.id
-JOIN stock_items si ON s.item = si.item
+INNER JOIN employees e ON s.employee = e.id
+INNER JOIN stock_items si ON s.item = si.id
 WHERE si.price > 100
 GROUP BY e.first_name, e.last_name
 ORDER BY sales_count DESC;
