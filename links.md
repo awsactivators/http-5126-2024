@@ -26,13 +26,23 @@ CONCAT Function (MySQL)
 SQL Lesson 1: SELECT queries 101 - https://sqlbolt.com/lesson/select_queries_introduction
 
 
-# Week 3
+## Week 3
 
 SQL Lesson 2: Queries with constraints (Pt. 1)
 https://sqlbolt.com/lesson/select_queries_with_constraints
 
-Week 4
+## Week 4
 
 SQL Lesson 10: Queries with aggregates (Pt. 1)
 
 https://sqlbolt.com/lesson/select_queries_with_aggregates
+
+## Week 8
+
+CRUD Operations in SQL
+
+https://www.linkedin.com/pulse/crud-operations-sql-day-2-insert-update-delete-timothy-villalpando/
+
+Indexes
+
+https://www.atlassian.com/data/sql/multicolumn-indexes
