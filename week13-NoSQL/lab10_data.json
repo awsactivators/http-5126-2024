@@ -1,0 +1,47 @@
+[
+  {
+  title: "The Imitation Game",
+  genres: [
+      "Historical Drama"
+    ],
+  release_date: new Date("2014-09-28"),
+  runtime: 114,
+  actors: [
+      { name: "Benedict Cumberbatch", role: "Alan Turing"
+      },
+      { name: "Keira Knightley", role: "Joan Clarke"
+      },
+      { name: "Matthew Goode", role: "Hugh Alexander"
+      }
+    ]
+  },
+  {
+  title: "Ex Machina",
+  genres: [
+      "Drama",
+      "Sci-Fi"
+    ],
+  release_date: new Date("2015-04-24"),
+  runtime: 110
+  },
+  {
+  title: "In the Heights",
+  genres: [
+      "Musical"
+    ],
+  release_date: new Date("2021-06-10"),
+  runtime: 143,
+  reviews: [
+      {
+      reviewer: "John Doe",
+      rating: 9,
+      comment: "An amazing movie about the life of Alan Turing."
+      },
+      {
+      reviewer: "Jane Smith",
+      rating: 8,
+      comment: "A well-acted film with a fascinating story."
+      }
+    ]
+  }
+]
