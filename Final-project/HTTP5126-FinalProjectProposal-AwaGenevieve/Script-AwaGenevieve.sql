@@ -2,8 +2,6 @@
 CREATE DATABASE perfume_db;
 USE perfume_db;
 
---------------------------------------------------------------------------------------------------------------
-
 
 -- Table: brand
 -- Stores information about perfume brands
@@ -35,7 +33,6 @@ INSERT INTO brand (name, year_founded, country, founder) VALUES
 ('BVLGARI', 1884, 'Italy', 'Sotirios Voulgaris');
 
 
---------------------------------------------------------------------------------------------------------------
 
 
 
@@ -74,7 +71,7 @@ INSERT INTO product (name, volume_ml, intensity, cost_price, brand_id) VALUES
 ('Omnia', 40, 'Eau de Toilette', 50.00, 15);
 
 
---------------------------------------------------------------------------------------------------------------
+
 
 
 
@@ -113,7 +110,7 @@ INSERT INTO note (product_id, top, heart, base) VALUES
 (15, 'Pear', 'Almond', 'Tonka Bean');
 
 
---------------------------------------------------------------------------------------------------------------
+
 
 
 -- Table: retail
@@ -145,11 +142,11 @@ INSERT INTO retail (store_name, region) VALUES
 ('House of Fraser', 'Europe');
 
 
---------------------------------------------------------------------------------------------------------------
+
 
 
 -- Table: product_retail
--- This junction table manages the many-to-many relationship between product and retail.
+-- This bridge table manages the many-to-many relationship between product and retail.
 
 CREATE TABLE product_retail (
     product_id INT NOT NULL,
@@ -185,7 +182,7 @@ INSERT INTO product_retail (product_id, retail_id, quantity_available, price) VA
 (15, 8, 50, 55.00);
 
 
---------------------------------------------------------------------------------------------------------------
+
 
 
 -- Table: sale
@@ -223,7 +220,7 @@ INSERT INTO sale (product_id, retail_id, quantity_sold, sale_date) VALUES
 (15, 8, 9, '2024-01-15 14:30:00');
 
 
---------------------------------------------------------------------------------------------------------------
+
 
 
 -- Table: audit_log
@@ -250,13 +247,12 @@ INSERT INTO audit_log (product_id, old_name, new_name, change_date) VALUES
 
 
 
---------------------------------------------------------------------------------------------------------------
 
 
 
--- Stored Procedure: usp_add_product_with_brand
+
+-- Stored Procedure: usp_add_product_brand_note_retail
 -- Adds a new product along with othe related tables
-
 
 DELIMITER //
 
@@ -306,29 +302,17 @@ END //
 DELIMITER ;
 
 
--- Existing Procedure
-SHOW CREATE PROCEDURE usp_add_product_brand_note_retail;
-
 
 -- Use case
 -- Call procedure to add product, brand, note, and retail if they dont already exist
 
--- CALL usp_add_product_brand_note_retail(
---     'Chanel', 1910, 'France', 'Gabrielle Chanel', 
---     'Bleu de Chanel', 100, 'Eau de Parfum', 80.00,
---     'Citrus', 'Ginger', 'Sandalwood', 
---     'Sephora', 100, 120.00, 'North America'
--- );
+CALL usp_add_product_brand_note_retail(
+    'Maison Francis Kurkdjian', 2009, 'France', 'Francis Kurkdjian', 
+    'Baccarat Rouge 540', 100, 'Eau de Parfum', 250.00,
+    'Saffron', 'Amberwood', 'Fir Resin', 
+    'Laura Beauty', 20, 300.00, 'Africa'
+);
 
--- -- new
--- CALL usp_add_product_brand_note_retail(
---     'Maison Francis Kurkdjian', 2009, 'France', 'Francis Kurkdjian', 
---     'Baccarat Rouge 540', 100, 'Eau de Parfum', 250.00,
---     'Saffron', 'Amberwood', 'Fir Resin', 
---     'Harrods', 20, 300.00, 'Europe'
--- );
-
--- New
 CALL usp_add_product_brand_note_retail(
     'Jo Malone', 1994, 'UK', 'Joanne Lesley Malone', 
     'English Pear & Freesia', 50, 'Cologne', 70.00,
@@ -359,7 +343,7 @@ CALL usp_add_product_brand_note_retail(
 );
 
 
---------------------------------------------------------------------------------------------------------------
+
 
 
 
@@ -380,25 +364,22 @@ END;
 DELIMITER ;
 
 
--- Existing Trigger
-SHOW CREATE TRIGGER trg_product_update;
-
 
 -- Use Case
 -- Tracking update on the product table to the audit_log table
 UPDATE product
-SET name = 'Bleu de Chanel Intense'
-WHERE name = 'Bleu de Chanel';
+SET name = 'Boss Bottled Intense'
+WHERE name = 'Boss Bottled';
 
 UPDATE product
-SET name = 'Chance Eau Vive'
-WHERE name = 'Chance Eau Tendre';
+SET name = 'CK One Only'
+WHERE name = 'CK One';
 
 
 -- Review all updates made to the product table
 SELECT * FROM audit_log WHERE product_id = 1;
 
---------------------------------------------------------------------------------------------------------------
+
 
 
 
@@ -413,10 +394,9 @@ DETERMINISTIC
 BEGIN
     DECLARE total_profit DECIMAL(10,2);
 
-    -- Correct table name
     SELECT SUM((sale.quantity_sold * product_retail.price) - (sale.quantity_sold * product.cost_price)) 
     INTO total_profit
-    FROM sales
+    FROM sale
     JOIN product_retail ON sale.product_id = product_retail.product_id AND sale.retail_id = product_retail.retail_id
     JOIN product ON sale.product_id = product.product_id
     WHERE sale.product_id = input_product_id;
@@ -425,10 +405,6 @@ BEGIN
 END //
 
 DELIMITER ;
-
-
--- Existing Function
-SHOW CREATE FUNCTION fn_get_total_profit;
 
 
 
@@ -444,7 +420,6 @@ FROM product;
 SELECT fn_get_total_profit(100) AS total_profit; -- gives null
 
 
---------------------------------------------------------------------------------------------------------------
 
 
 
@@ -471,14 +446,10 @@ JOIN product_retail pr ON p.product_id = pr.product_id
 JOIN retail r ON pr.retail_id = r.retail_id;
 
 
--- Existing View
-SHOW CREATE VIEW fragrance_profile_view;
-
-
 -- View Usecases
 -- Retrieve all products with a specific top note
 SELECT * FROM fragrance_profile_view
-WHERE top_note = 'Citrus';
+WHERE top_note = 'Pear';
 
 -- List all products sold in a specific store
 SELECT * FROM fragrance_profile_view
